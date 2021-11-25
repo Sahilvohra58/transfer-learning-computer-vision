@@ -66,3 +66,16 @@ def plot_loss_curves(model_history):
     plt.legend()
     plt.show()
 
+
+import matplotlib.image as mpimg
+import random
+def view_random_image(train_data_path):
+    target_class = random.choice(os.listdir(train_data_path)) # choose a random class
+    target_dir = train_data_path + '/' + target_class # create the target directory
+    random_image = random.choice(os.listdir(target_dir)) # choose a random image from target directory
+    random_image_path = target_dir + "/" + random_image # create the choosen random image path
+    img = mpimg.imread(random_image_path) # read in the chosen target image
+    plt.imshow(img) # plot the target image
+    plt.title(f"Original random image from class: {target_class}")
+    plt.axis(False); # turn off the axes
+    return img 
