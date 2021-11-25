@@ -30,7 +30,7 @@ def dir_explore(dir_path):
 
 import datetime
 import tensorflow as tf
-def create_callbacks(tensorboard_dir_name, checkpoint_path, experiment_name, monitor='val_accuracy', patience= 5, verbose= 0):
+def create_callbacks(tensorboard_dir_name, checkpoint_path, experiment_name, monitor='val_accuracy', patience= 5, verbose= 0, save_weights_only=False):
     log_dir = tensorboard_dir_name + "/" + experiment_name + "/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
@@ -38,7 +38,7 @@ def create_callbacks(tensorboard_dir_name, checkpoint_path, experiment_name, mon
                                                                 patience=patience, 
                                                                 verbose=verbose)
     check_point_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,
-                                                                save_weights_only=False,
+                                                                save_weights_only=save_weights_only,
                                                                 verbose=verbose)
     print(f"Saving TensorBoard log files to: {log_dir}")
     return [tensorboard_callback, early_stopping_callback, check_point_callback]
