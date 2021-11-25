@@ -78,4 +78,4 @@ def view_random_image(train_data_path):
     plt.imshow(img) # plot the target image
     plt.title(f"Original random image from class: {target_class}")
     plt.axis(False); # turn off the axes
-    return img
+    return img, target_class
